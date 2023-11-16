@@ -31,7 +31,8 @@ void _choose_op(char *cmd, int line_number)
 {
 	instruction_t ins[] = {{"push", _push}, {"pall", _pall},
 		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
-		{"add", _add}, {"nop", _nop},
+		{"add", _add}, {"nop", _nop}, {"sub", _sub}, {"div", _div},
+		{"mul", _mul}, {"mod", _mod},
 		{0, 0}};
 	int i = 0;
 	char *err_msg;
@@ -75,7 +76,8 @@ int num_of_ops(char *first_op)
 {
 	n_ops ops[] = {{"push", 2}, {"pall", 1},
 		{"pint", 1}, {"pop", 1}, {"swap", 1},
-		{"add", 1}, {"nop", 1},
+		{"add", 1}, {"nop", 1}, {"sub", 1}, {"div", 1},
+		{"mul", 1}, {"mod", 1},
 		{0, 1}};
 	int i = 0;
 
