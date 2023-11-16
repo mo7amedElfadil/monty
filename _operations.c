@@ -10,7 +10,8 @@ void _choose_op(char *cmd, int line_number)
 	instruction_t ins[] = {{"push", _push}, {"pall", _pall},
 		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
 		{"add", _add}, {"nop", _nop}, {"sub", _sub}, {"div", _div},
-		{"mul", _mul}, {"mod", _mod},
+		{"mul", _mul}, {"mod", _mod}, {"pchar", _pchar}, {"pstr", _pstr},
+		{"rotl", _rotl}, {"rotr", _rotr},
 		{0, 0}};
 	int i = 0;
 
@@ -21,7 +22,6 @@ void _choose_op(char *cmd, int line_number)
 			ins[i].f(&(mode.head), line_number);
 			return;
 		}
-
 	}
 	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", line_number, cmd);
 	free_mode(), free(mode.opcodes);
@@ -37,11 +37,17 @@ void _choose_op(char *cmd, int line_number)
 int _mode_choice(char *cmd)
 {
 	if (!_strcmp(cmd, "stack"))
-		return (0);
-	else if (!_strcmp(cmd, "queue"))
+	{
+		mode.mode = 0;
 		return (1);
+	}
+	else if (!_strcmp(cmd, "queue"))
+	{
+		mode.mode = 1;
+		return (1);
+	}
 	else
-		return (mode.mode);
+		return (0);
 }
 /**
  * num_of_ops - takes in opcode (cmd) and determines number of allocations

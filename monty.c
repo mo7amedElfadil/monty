@@ -37,8 +37,8 @@ int main(int ac, char *av[])
 		mode.opcodes = _tokenize_opcodes(mode.input, line_number);
 		if (mode.opcodes)
 		{
-			mode.mode = _mode_choice(mode.opcodes);
-			_choose_op(mode.opcodes, line_number);
+			if (!_mode_choice(mode.opcodes))
+				_choose_op(mode.opcodes, line_number);
 			free(mode.opcodes);
 		}
 		line = getline(&(mode.input), &len, mode.stream);

@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <unistd.h>
 /**
  * print_stack_t - print a doubly linked list
  * @h: head of doubly linked list
@@ -45,6 +44,8 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	new->next = *head;
 	if (*head)
 		(*head)->prev = new;
+	else
+		mode.tail = new;
 	new->prev = NULL;
 	*head = new;
 	return (*head);

@@ -9,7 +9,10 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	(void)line_number;
-	add_dnodeint(stack, mode.n);
+	if (!mode.mode)
+		add_dnodeint(stack, mode.n);
+	else
+		add_dnodeint_end(stack, mode.n);
 }
 /**
  * _pall - pall or print all operation for stack
