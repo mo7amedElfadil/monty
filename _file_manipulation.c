@@ -40,7 +40,10 @@ char *_tokenize_opcodes(char *input, int line_number)
 	{	return (NULL); }
 	mode.opcodes = malloc(_strlen(token) + 1);
 	if (!mode.opcodes)
+	{
+		free_mode();
 		_put_error("Error: malloc failed\n"), exit(EXIT_FAILURE);
+	}
 	_strcpy(mode.opcodes, token);
 	token =  strtok(NULL, " \t\r\n\v\f");
 	if (num_of_ops(mode.opcodes) == 2)
