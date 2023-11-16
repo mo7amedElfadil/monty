@@ -94,6 +94,7 @@ int _strcmp(char *s1, char *s2);
 /* ****___ _file_manipulation.c ___**** */
 FILE *_open_monty(char *f_name);
 char **_tokenize_opcodes(char *input);
+int _check_monty_file(char *f_name);
 
 /* ****___ _stack.c ___**** */
 void _push(stack_t **stack, unsigned int line_number);

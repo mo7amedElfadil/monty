@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 /**
  * _open_monty - open a monty file.m
  * @f_name: name of file
@@ -8,12 +9,15 @@ FILE *_open_monty(char *f_name)
 {
 	FILE *stream;
 
+
 	stream = fopen(f_name, "r");
-	if (!stream)
+	if (!stream || _check_monty_file(f_name))
 	{
 		char *err_msg = _file_error("Error: Can't open file ", f_name);
 
 		_put_error(err_msg), free(err_msg);
+		if (stream)
+			fclose(stream);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -47,4 +51,14 @@ char **_tokenize_opcodes(char *input)
 	} opcodes[i] = NULL;
 	return (opcodes);
 }
+/**
+ * _check_monty_file - checks if file is a monty.m file
+ * @f_name: file name
+ * Return: 0 if it is a monty.m file, 1 otherwise.
+ */
+int _check_monty_file(char *f_name)
+{
+	int len = _strlen(f_name);
 
+	return (f_name[len - 1] != 'm' || f_name[len - 2] != '.');
+}
