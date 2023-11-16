@@ -46,7 +46,7 @@ char *_tokenize_opcodes(char *input, int line_number)
 	_strcpy(mode.opcodes, token);
 	token =  strtok(NULL, " \t\r\n\v\f");
 	if (num_of_ops(mode.opcodes) == 2)
-		assign_num(mode.opcodes, token, line_number);
+		assign_num(token, line_number);
 	return (mode.opcodes);
 }
 /**
@@ -67,7 +67,7 @@ int _check_monty_file(char *f_name)
  * @token: number
  * @line_number: line number
  */
-void assign_num(char *opcodes, char *token, int line_number)
+void assign_num(char *token, int line_number)
 {
 		if (token && !_isnumeric(token))
 			mode.n = _atoi(token);

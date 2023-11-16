@@ -13,7 +13,6 @@ void _choose_op(char *cmd, int line_number)
 		{"mul", _mul}, {"mod", _mod},
 		{0, 0}};
 	int i = 0;
-	char *err_msg;
 
 	for (i = 0; ins[i].opcode; i++)
 	{
