@@ -63,7 +63,6 @@ int _check_monty_file(char *f_name)
 
 /**
  * assign_num - assigns number to be pushed onto the DS
- * @opcodes: instruction to check if it is meant to add a number
  * @token: number
  * @line_number: line number
  */
