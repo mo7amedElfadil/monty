@@ -36,7 +36,7 @@ char **_tokenize_opcodes(char *input)
 	char *token, **opcodes;
 
 	token =  strtok(input, " \t\r\n\v\f");
-	if (!token)
+	if (!token || *token == '#')
 	{	return (NULL); }
 	mode.n_op = num_of_ops(token);
 	opcodes = malloc(sizeof(*opcodes) * (mode.n_op + 1));
