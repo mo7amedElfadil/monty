@@ -79,12 +79,12 @@ void _rotl(stack_t **stack, unsigned int line_number)
 void _rotr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h = mode.tail;
-	int x = h->n;
+	int x;
 
 	(void)line_number, (void)stack;
 	if (!(*stack) || !(*stack)->next)
 		return;
-
+	x = h->n;
 	for (; h->prev; h = h->prev)
 	{
 		h->n = h->prev->n;
