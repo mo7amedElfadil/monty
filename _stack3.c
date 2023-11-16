@@ -60,10 +60,13 @@ void _pstr(stack_t **stack, unsigned int line_number)
  */
 void _rotl(stack_t **stack, unsigned int line_number)
 {
-	int x = (*stack)->n;
+	int x;
 	stack_t *h = *stack;
 
 	(void)line_number;
+	if (!h || !h->next)
+		return;
+	x = (*stack)->n;
 	for (; h->next; h = h->next)
 		h->n = h->next->n;
 	h->n = x;
@@ -79,6 +82,9 @@ void _rotr(stack_t **stack, unsigned int line_number)
 	int x = h->n;
 
 	(void)line_number, (void)stack;
+	if (!(*stack) || !(*stack)->next)
+		return;
+
 	for (; h->prev; h = h->prev)
 	{
 		h->n = h->prev->n;
