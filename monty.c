@@ -29,6 +29,8 @@ int main(int ac, char *av[])
 	/* get file stream to pass to getline */
 	mode.stream = _open_monty(f_name);
 	mode.input = malloc(len);
+	if (!mode.input)
+		dprintf(STDERR_FILENO, "Error: malloc failed\n"), exit(EXIT_FAILURE);
 	line = getline(&(mode.input), &len, mode.stream);
 	while (line >= 0)
 	{

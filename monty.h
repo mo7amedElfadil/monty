@@ -128,14 +128,8 @@ void free_mode(void);
 
 /* ****___ _atoi.c ___**** */
 int _atoi(char *s);
-char *_itoa(int x);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int _isnumeric(char *c);
 void _rev_string(char *s);
-
-
-
-
 
 /* ****___ _operations.c ___**** */
 void assign_op(char *opcodes);
