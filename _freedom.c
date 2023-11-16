@@ -10,7 +10,7 @@ void free_opcodes(char **cmds)
 
 	if (cmds)
 	{
-		while (cmds[idx])
+		while (cmds[idx] && idx < mode.n_op)
 		{
 			free(cmds[idx]);
 			idx++;

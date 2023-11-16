@@ -1,5 +1,6 @@
 #include "monty.h"
 #include <stdio.h>
+#include <stdlib.h>
 /**
  * _open_monty - open a monty file.m
  * @f_name: name of file
@@ -32,23 +33,30 @@ FILE *_open_monty(char *f_name)
 char **_tokenize_opcodes(char *input)
 {
 	int i = 0;
-	char *token, **opcodes = malloc(sizeof(*opcodes) * 3);
+	char *token, **opcodes;
 
 	token =  strtok(input, " \t\r\n\v\f");
 	if (!token)
-	{	free(opcodes);
-		return (NULL); }
+	{	return (NULL); }
+	mode.n_op = num_of_ops(token);
+	opcodes = malloc(sizeof(*opcodes) * (mode.n_op + 1));
+	if (!opcodes)
+		_put_error("Error: malloc failed\n"), exit(EXIT_FAILURE);
 	opcodes[i] = malloc(_strlen(token) + 1);
+	if (!*opcodes)
+		_put_error("Error: malloc failed\n"), exit(EXIT_FAILURE);
 	_strcpy(opcodes[i], token);
-		while (opcodes[i] && i < 2)
+	while (opcodes[i] && i < mode.n_op - 1)
+	{
+		i++, token = strtok(NULL, " \t\r\n\v\f");
+		if (!token)
 		{
-			i++, token = strtok(NULL, " \t\r\n\v\f");
-			if (!token)
-			{
-				break; }
-			opcodes[i] = malloc(_strlen(token) + 1);
-			_strcpy(opcodes[i], token);
-	} opcodes[i] = NULL;
+			break; }
+		opcodes[i] = malloc(_strlen(token) + 1);
+		if (!opcodes[i])
+			_put_error("Error: malloc failed\n"), exit(EXIT_FAILURE);
+		_strcpy(opcodes[i], token);
+	} opcodes[mode.n_op] = NULL;
 	return (opcodes);
 }
 /**

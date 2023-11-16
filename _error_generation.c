@@ -10,7 +10,8 @@ char *_file_error(char *msg, char *f_name)
 	char *err_msg = malloc(100);
 
 	_strcpy(err_msg, msg);
-	_strcat(err_msg, f_name);
+	if (f_name)
+		_strcat(err_msg, f_name);
 	_strcat(err_msg, "\n");
 	return (err_msg);
 }
@@ -48,7 +49,7 @@ char *op_usage_err(char *opcodes, int line_number)
 	_strcat(err_msg, at), free(at);
 	_strcat(err_msg, ": usage: ");
 	_strcat(err_msg, opcodes);
-	_strcat(err_msg, ": integer\n");
+	_strcat(err_msg, " integer\n");
 	return (err_msg);
 }
 /**

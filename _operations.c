@@ -7,7 +7,7 @@
 void assign_op(char **opcodes, int line_number)
 {
 	mode.mode = _mode_choice(*opcodes);
-	if (opcodes[1])
+	if (opcodes[1] && _strcmp(*opcodes, "pall"))
 	{
 		if (!_isnumeric(opcodes[1]))
 			mode.n = _atoi(opcodes[1]);
@@ -65,4 +65,28 @@ int _mode_choice(char *cmd)
 		return (1);
 	else
 		return (mode.mode);
+}
+/**
+ * num_of_ops - takes in opcode (cmd) and determines number of allocations
+ * @first_op: first opcodes
+ * Return: 2 or 1
+ */
+int num_of_ops(char *first_op)
+{
+	n_ops ops[] = {{"push", 2}, {"pall", 1},
+		{"pint", 1}, {"pop", 1}, {"swap", 1},
+		{"add", 1},
+		{0, 1}};
+	int i = 0;
+
+	for (i = 0; ops[i].opcode; i++)
+	{
+		if (!strcmp(first_op, ops[i].opcode))
+		{
+			return (ops[i].n);
+		}
+
+	}
+	return (1);
+
 }

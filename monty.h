@@ -31,7 +31,7 @@ typedef struct stack_s
  * struct mode_s - doubly linked list mode (stack or queue)
  * @mode: stack (0) , queue (1)
  * @n: integer
- * @op: comment -1, push (0) , pall (1), etc
+ * @n_op: number of allocations for op
  * @stream: pointer to file stream
  * @input: pointer to input line
  * @opcodes: pointer to array opcodes
@@ -45,7 +45,7 @@ typedef struct mode_s
 {
 	int mode;
 	int n;
-	int op;
+	int n_op;
 	FILE *stream;
 	char *input;
 	char **opcodes;
@@ -69,6 +69,18 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+/**
+ * struct n_ops - opcode and number of allocations
+ * @opcode: the opcode
+ * @n: number of allocations
+ * Description: opcode and number of allocs for opcodes
+ */
+typedef struct n_ops
+{
+	char *opcode;
+	int n;
+} n_ops;
+
 
 /* ****_____ prototypes _____**** */
 
@@ -134,5 +146,6 @@ void _rev_string(char *s);
 extern void assign_op(char **opcodes, int line_number);
 int _mode_choice(char *cmd);
 void _choose_op(char *cmd, int line_number);
+int num_of_ops(char *first_op);
 
 #endif

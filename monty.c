@@ -16,7 +16,7 @@ int main(int ac, char *av[])
 
 	mode.mode = 0;
 	mode.n = 0;
-	mode.op = 0;
+	mode.n_op = 0;
 	mode.opcodes = 0;
 	mode.head = NULL;
 	mode.tail = NULL;
@@ -33,12 +33,12 @@ int main(int ac, char *av[])
 	while (line >= 0)
 	{
 		mode.opcodes = _tokenize_opcodes(mode.input);
-		if (!mode.opcodes)
-			free_mode(), exit(0);
-		assign_op(mode.opcodes, line_number);
-		_choose_op(*mode.opcodes, line_number);
 		if (mode.opcodes)
+		{
+			assign_op(mode.opcodes, line_number);
+			_choose_op(*mode.opcodes, line_number);
 			free_opcodes(mode.opcodes);
+		}
 		line = getline(&(mode.input), &len, mode.stream);
 		line_number++;
 	}
