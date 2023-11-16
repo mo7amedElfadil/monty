@@ -15,7 +15,6 @@ void _nop(stack_t **stack, unsigned int line_number)
  */
 void _pchar(stack_t **stack, unsigned int line_number)
 {
-
 	if (!stack || !*stack)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty\n", line_number);
@@ -31,8 +30,6 @@ void _pchar(stack_t **stack, unsigned int line_number)
 		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
-
-
 }
 /**
  * _pstr - pstr/ print string operation for stack
@@ -47,7 +44,6 @@ void _pstr(stack_t **stack, unsigned int line_number)
 		dprintf(STDOUT_FILENO, "\n");
 		return;
 	}
-
 	if ((*stack)->n > 0 && (*stack)->n <= 127)
 		dprintf(STDOUT_FILENO, "%c", (*stack)->n);
 	_pstr(&(*stack)->next, line_number);

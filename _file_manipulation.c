@@ -68,7 +68,8 @@ int _check_monty_file(char *f_name)
  */
 void assign_num(char *token, int line_number)
 {
-		if (token && !_isnumeric(token))
+		if (token && (!_isnumeric(token) ||
+					(*token == '-' && !_isnumeric(token + 1))))
 			mode.n = _atoi(token);
 		else
 		{
