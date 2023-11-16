@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <unistd.h>
 /**
  * print_stack_t - print a doubly linked list
  * @h: head of doubly linked list
@@ -8,7 +9,7 @@ size_t print_stack_t(const stack_t *h)
 {
 	if (!h)
 		return (0);
-	printf("%d\n", h->n);
+	dprintf(STDOUT_FILENO, "%d\n", h->n);
 	return (1 + print_stack_t(h->next));
 }
 /**
@@ -36,8 +37,8 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		_put_error("Error: malloc failed\n"), free_mode();
-		free(mode.opcodes);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	new->n = n;
@@ -66,8 +67,8 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		_put_error("Error: malloc failed\n"), free_mode();
-		free(mode.opcodes);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	new->n = n;

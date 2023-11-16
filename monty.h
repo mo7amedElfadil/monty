@@ -84,17 +84,6 @@ typedef struct n_ops
 
 /* ****_____ prototypes _____**** */
 
-/* ****___ _put_buffer.c ___**** */
-int _put_buffer(char *c);
-int _put_error(char *c);
-
-
-
-/* ****___ _error_generation.c ___**** */
-char *_file_error(char *msg, char *f_name);
-char *_generate_choose_op_err(int line_number, char *cmd);
-char *op_usage_err(char *opcodes, int line_number);
-char *_p_err(int line_number, char *msg);
 
 /* ****___ _str.c ___**** */
 int _strlen(char *s);

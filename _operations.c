@@ -24,8 +24,7 @@ void _choose_op(char *cmd, int line_number)
 		}
 
 	}
-	err_msg = _generate_choose_op_err(line_number, cmd);
-	_put_error(err_msg), free(err_msg);
+	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", line_number, cmd);
 	free_mode(), free(mode.opcodes);
 	exit(EXIT_FAILURE);
 

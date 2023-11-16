@@ -21,7 +21,8 @@ int main(int ac, char *av[])
 	mode.tail = NULL;
 	if (ac != 2)
 	{
-		_put_error("USAGE: monty file\n"), exit(EXIT_FAILURE);
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
 	}
 	/* file name */
 	f_name = av[1];

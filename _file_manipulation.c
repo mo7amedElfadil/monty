@@ -1,6 +1,7 @@
 #include "monty.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 /**
  * _open_monty - open a monty file.m
  * @f_name: name of file
@@ -72,9 +73,7 @@ void assign_num(char *opcodes, char *token, int line_number)
 			mode.n = _atoi(token);
 		else
 		{
-			char *err_msg = op_usage_err(opcodes, line_number);
-
-			_put_error(err_msg), free(err_msg);
+			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
 			free_mode(), free(mode.opcodes);
 			exit(EXIT_FAILURE);
 		}
