@@ -45,8 +45,12 @@ void _pstr(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	if ((*stack)->n > 0 && (*stack)->n <= 127)
+	{
 		dprintf(STDOUT_FILENO, "%c", (*stack)->n);
-	_pstr(&(*stack)->next, line_number);
+		_pstr(&(*stack)->next, line_number);
+	}
+	else
+		dprintf(STDOUT_FILENO, "\n");
 }
 
 /**
