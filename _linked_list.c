@@ -9,7 +9,6 @@ size_t print_stack_t(const stack_t *h)
 	if (!h)
 		return (0);
 	printf("%d\n", h->n);
-
 	return (1 + print_stack_t(h->next));
 }
 /**

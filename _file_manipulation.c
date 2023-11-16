@@ -13,9 +13,7 @@ FILE *_open_monty(char *f_name)
 	stream = fopen(f_name, "r");
 	if (!stream || _check_monty_file(f_name))
 	{
-		char *err_msg = _file_error("Error: Can't open file ", f_name);
-
-		_put_error(err_msg), free(err_msg);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", f_name);
 		if (stream)
 			fclose(stream);
 		exit(EXIT_FAILURE);
@@ -42,7 +40,7 @@ char *_tokenize_opcodes(char *input, int line_number)
 	if (!mode.opcodes)
 	{
 		free_mode();
-		_put_error("Error: malloc failed\n"), exit(EXIT_FAILURE);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n"), exit(EXIT_FAILURE);
 	}
 	_strcpy(mode.opcodes, token);
 	token =  strtok(NULL, " \t\r\n\v\f");

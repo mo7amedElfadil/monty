@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <stdio.h>
+#include <unistd.h>
 /**
  * _push - push operation for stack
  * @stack: stack head
@@ -16,8 +18,8 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, unsigned int line_number)
 {
-	print_stack_t(*stack);
 	(void)line_number;
+	print_stack_t(*stack);
 }
 
 /**
@@ -30,19 +32,11 @@ void _pint(stack_t **stack, unsigned int line_number)
 
 	if (!stack || !*stack)
 	{
-		char *err_msg = _p_err(line_number, ": can't pint, stack empty\n");
-
-		_put_error(err_msg), free(err_msg);
+		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
 		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		char *i = _itoa((*stack)->n);
-
-		_put_buffer(i), free(i);
-		_put_buffer("\n");
-	}
+	dprintf(STDOUT_FILENO, "%d\n", (*stack)->n);
 }
 /**
  * _pop - pop operation for stack
@@ -53,9 +47,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !*stack)
 	{
-		char *err_msg = _p_err(line_number, ": can't pop an empty stack\n");
-
-		_put_error(err_msg), free(err_msg);
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
 		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
@@ -73,9 +65,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !*stack || !(*stack)->next)
 	{
-		char *err_msg = _p_err(line_number, ": can't swap, stack too short\n");
-
-		_put_error(err_msg), free(err_msg);
+		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
 		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
