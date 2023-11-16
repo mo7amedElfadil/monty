@@ -48,7 +48,7 @@ typedef struct mode_s
 	int n_op;
 	FILE *stream;
 	char *input;
-	char **opcodes;
+	char *opcodes;
 	struct stack_s *head;
 	struct stack_s *tail;
 } mode_x;
@@ -105,8 +105,9 @@ int _strcmp(char *s1, char *s2);
 
 /* ****___ _file_manipulation.c ___**** */
 FILE *_open_monty(char *f_name);
-char **_tokenize_opcodes(char *input);
+char *_tokenize_opcodes(char *input, int line_number);
 int _check_monty_file(char *f_name);
+void assign_num(char *opcodes,char *token, int line_number);
 
 /* ****___ _stack.c ___**** */
 void _push(stack_t **stack, unsigned int line_number);
@@ -133,7 +134,6 @@ void free_stack_t(stack_t *head);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 
 /* ****___ _freedom.c ___**** */
-void free_opcodes(char **cmds);
 void free_mode(void);
 
 
@@ -149,7 +149,7 @@ void _rev_string(char *s);
 
 
 /* ****___ _operations.c ___**** */
-extern void assign_op(char **opcodes, int line_number);
+void assign_op(char *opcodes);
 int _mode_choice(char *cmd);
 void _choose_op(char *cmd, int line_number);
 int num_of_ops(char *first_op);

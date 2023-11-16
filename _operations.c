@@ -1,27 +1,5 @@
 #include "monty.h"
 /**
- * assign_op - takes in opcodes and modifies the mode
- * @opcodes: opcodes
- * @line_number: line number of file starting with 1
- */
-void assign_op(char **opcodes, int line_number)
-{
-	mode.mode = _mode_choice(*opcodes);
-	if (opcodes[1] && _strcmp(*opcodes, "pall"))
-	{
-		if (!_isnumeric(opcodes[1]))
-			mode.n = _atoi(opcodes[1]);
-		else
-		{
-			char *err_msg = op_usage_err(*opcodes, line_number);
-
-			_put_error(err_msg), free(err_msg);
-			free_mode(), free_opcodes(mode.opcodes);
-			exit(EXIT_FAILURE);
-		}
-	}
-}
-/**
  * _choose_op - takes in opcode (cmd) and chooses the function to execute
  * @cmd: opcodes
  * @line_number: line number of file starting with 1
@@ -48,7 +26,7 @@ void _choose_op(char *cmd, int line_number)
 	}
 	err_msg = _generate_choose_op_err(line_number, cmd);
 	_put_error(err_msg), free(err_msg);
-	free_mode(), free_opcodes(mode.opcodes);
+	free_mode(), free(mode.opcodes);
 	exit(EXIT_FAILURE);
 
 }
@@ -74,11 +52,7 @@ int _mode_choice(char *cmd)
  */
 int num_of_ops(char *first_op)
 {
-	n_ops ops[] = {{"push", 2}, {"pall", 1},
-		{"pint", 1}, {"pop", 1}, {"swap", 1},
-		{"add", 1}, {"nop", 1}, {"sub", 1}, {"div", 1},
-		{"mul", 1}, {"mod", 1},
-		{0, 1}};
+	n_ops ops[] = {{"push", 2},	{0, 1}};
 	int i = 0;
 
 	for (i = 0; ops[i].opcode; i++)
@@ -87,7 +61,6 @@ int num_of_ops(char *first_op)
 		{
 			return (ops[i].n);
 		}
-
 	}
 	return (1);
 

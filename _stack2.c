@@ -12,7 +12,7 @@ void _add(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't add, stack too short\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n += (*stack)->n;
@@ -30,7 +30,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't sub, stack too short\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n -= (*stack)->n;
@@ -48,7 +48,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't div, stack too short\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n)
@@ -61,7 +61,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": division by zero\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 
 	}
@@ -78,7 +78,7 @@ void _mul(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't mul, stack too short\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->next->n *= (*stack)->n;
@@ -93,10 +93,10 @@ void _mod(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !*stack || !(*stack)->next)
 	{
-		char *err_msg = _p_err(line_number, ": can't sub, stack too short\n");
+		char *err_msg = _p_err(line_number, ": can't mul, stack too short\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	if ((*stack)->n)
@@ -109,7 +109,7 @@ void _mod(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": division by zero\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 }

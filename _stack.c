@@ -33,7 +33,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't pint, stack empty\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -56,7 +56,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't pop an empty stack\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -76,7 +76,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 		char *err_msg = _p_err(line_number, ": can't swap, stack too short\n");
 
 		_put_error(err_msg), free(err_msg);
-		free_mode(), free_opcodes(mode.opcodes);
+		free_mode(), free(mode.opcodes);
 		exit(EXIT_FAILURE);
 	}
 

@@ -31,12 +31,12 @@ int main(int ac, char *av[])
 	line = getline(&(mode.input), &len, mode.stream);
 	while (line >= 0)
 	{
-		mode.opcodes = _tokenize_opcodes(mode.input);
+		mode.opcodes = _tokenize_opcodes(mode.input, line_number);
 		if (mode.opcodes)
 		{
-			assign_op(mode.opcodes, line_number);
-			_choose_op(*mode.opcodes, line_number);
-			free_opcodes(mode.opcodes);
+			mode.mode = _mode_choice(mode.opcodes);
+			_choose_op(mode.opcodes, line_number);
+			free(mode.opcodes);
 		}
 		line = getline(&(mode.input), &len, mode.stream);
 		line_number++;

@@ -1,50 +1,6 @@
 #include "monty.h"
 
 /**
- * free_opcodes - frees all opcode buffs
- * @cmds: array of tokens/commands
- */
-void free_opcodes(char **cmds)
-{
-	int idx = 0;
-
-	if (cmds)
-	{
-		while (cmds[idx] && idx < mode.n_op)
-		{
-			free(cmds[idx]);
-			idx++;
-		}
-	}
-	if (cmds)
-	{
-		free(cmds);
-		cmds = 0;
-	}
-}
-/**
- * free_vars - free the all the allocated memory for exit.
- * @n:number of arguments .
- * Return: void.
- */
-
-void free_vars(int n, ...)
-{
-	va_list ap;
-
-	va_start(ap, n);
-	for (; n > 0; n--)
-	{
-		void *ptr = va_arg(ap, void *);
-
-		if (ptr)
-		{
-			free(ptr);
-		}
-	}
-	va_end(ap);
-}
-/**
  * free_stack_t - frees a doubly linked list list_t
  * @head: head of the doubly linked list
  */
