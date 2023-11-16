@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <stdlib.h>
 
 mode_x mode;
 /**
@@ -11,7 +10,7 @@ mode_x mode;
 int main(int ac, char *av[])
 {
 	char *f_name;
-	size_t len = BUFSIZ;
+	size_t len = BUFF;
 	int line = 0, line_number = 1;
 
 	mode.mode = 0;

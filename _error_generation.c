@@ -7,7 +7,7 @@
  */
 char *_file_error(char *msg, char *f_name)
 {
-	char *err_msg = malloc(100);
+	char *err_msg = malloc(BUFF);
 
 	_strcpy(err_msg, msg);
 	if (f_name)
@@ -23,7 +23,7 @@ char *_file_error(char *msg, char *f_name)
  */
 char *_generate_choose_op_err(int line_number, char *cmd)
 {
-	char *err_msg = malloc(100), *at;
+	char *err_msg = malloc(BUFF), *at;
 
 	at = _itoa(line_number);
 	_strcpy(err_msg, "L");
@@ -42,7 +42,7 @@ char *_generate_choose_op_err(int line_number, char *cmd)
 
 char *op_usage_err(char *opcodes, int line_number)
 {
-	char *err_msg = malloc(100), *at;
+	char *err_msg = malloc(BUFF), *at;
 
 	at = _itoa(line_number);
 	_strcpy(err_msg, "L");
@@ -60,7 +60,7 @@ char *op_usage_err(char *opcodes, int line_number)
  */
 char *_p_err(int line_number, char *msg)
 {
-	char *err_msg = malloc(100), *at;
+	char *err_msg = malloc(BUFF), *at;
 
 	at = _itoa(line_number);
 	_strcpy(err_msg, "L");
