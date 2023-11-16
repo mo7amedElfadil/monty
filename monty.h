@@ -107,7 +107,7 @@ int _strcmp(char *s1, char *s2);
 FILE *_open_monty(char *f_name);
 char *_tokenize_opcodes(char *input, int line_number);
 int _check_monty_file(char *f_name);
-void assign_num(char *opcodes,char *token, int line_number);
+void assign_num(char *opcodes, char *token, int line_number);
 
 /* ****___ _stack.c ___**** */
 void _push(stack_t **stack, unsigned int line_number);

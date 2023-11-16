@@ -43,7 +43,7 @@ char *_tokenize_opcodes(char *input, int line_number)
 		_put_error("Error: malloc failed\n"), exit(EXIT_FAILURE);
 	_strcpy(mode.opcodes, token);
 	token =  strtok(NULL, " \t\r\n\v\f");
-	if (token && num_of_ops(mode.opcodes) == 2)
+	if (num_of_ops(mode.opcodes) == 2)
 		assign_num(mode.opcodes, token, line_number);
 	return (mode.opcodes);
 }
@@ -67,9 +67,7 @@ int _check_monty_file(char *f_name)
  */
 void assign_num(char *opcodes, char *token, int line_number)
 {
-	if (token)
-	{
-		if (!_isnumeric(token))
+		if (token && !_isnumeric(token))
 			mode.n = _atoi(token);
 		else
 		{
@@ -79,5 +77,4 @@ void assign_num(char *opcodes, char *token, int line_number)
 			free_mode(), free(mode.opcodes);
 			exit(EXIT_FAILURE);
 		}
-	}
 }
