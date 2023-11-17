@@ -12,7 +12,7 @@ FILE *_open_monty(char *f_name)
 	FILE *stream;
 
 	stream = fopen(f_name, "r");
-	if (!stream || _check_monty_file(f_name))
+	if (!stream)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", f_name);
 		if (stream)
